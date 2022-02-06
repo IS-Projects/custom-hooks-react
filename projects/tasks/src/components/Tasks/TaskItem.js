@@ -1,7 +1,15 @@
-import classes from './TaskItem.module.css';
+import classes from "./TaskItem.module.css";
 
 const TaskItem = (props) => {
-  return <li className={classes.task}>{props.children}</li>
+  const removeHandler = () => {
+    props.onClick(props.id);
+  };
+  return (
+    <li className={classes.task} id={props.id}>
+      <p>{props.children}</p>
+      <button onClick={removeHandler}>Delete</button>
+    </li>
+  );
 };
 
 export default TaskItem;

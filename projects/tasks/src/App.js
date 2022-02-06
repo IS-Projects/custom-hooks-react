@@ -32,6 +32,15 @@ function App() {
     setTasks((prevTasks) => prevTasks.concat(task));
   };
 
+  const taskRemoveHandler = (taskId) => {
+    setTasks((prevTasks) => {
+      const taskToRemoveIndex = prevTasks.findIndex(
+        (task) => task.id === taskId
+      );
+      prevTasks.splice(taskToRemoveIndex, 1);
+      return prevTasks;
+    });
+  };
   return (
     <React.Fragment>
       <NewTask onAddTask={taskAddHandler} />
@@ -40,6 +49,7 @@ function App() {
         loading={isLoading}
         error={error}
         onFetch={fetchTasks}
+        onDelete={taskRemoveHandler}
       />
     </React.Fragment>
   );
